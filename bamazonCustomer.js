@@ -9,29 +9,33 @@ var connection = mysql.createConnection({
   database: "bamazon_db"
 });
 
+connection.connect(function(err) {
+  if (err) throw err;
+  start();
+})
 
-var greeting = [
-  {
-    type: "list",
-    name: "test",
-    message: "What do you want to do",
-    choices:[
-      "List Products",
-      "Buy Product"
-    ]
-  }
-];
-
-inquirer.prompt(greeting).then(function(answers) {
-  if(answers.test === "List Products") {
-    readProducts();
-  } else {
-    buyProduct();
-  }
-});
+function start() {
+  var greeting = [
+    {
+      type: "list",
+      name: "test",
+      message: "What do you want to do",
+      choices:[
+        "List Products",
+        "Buy Product"
+      ]
+    }
+  ];
+  inquirer.prompt(greeting).then(function(answers) {
+    if(answers.test === "List Products") {
+      readProducts();
+    } else {
+      buyProduct();
+    }
+  });
+}
 
 function buyProduct() {
-
   var buyProductQuestions = [
     {
       type: "input",
@@ -44,11 +48,10 @@ function buyProduct() {
       message: "How many units would you like to buy?"
     }
   ];
-
   inquirer.prompt(buyProductQuestions).then(function(answers) {
     console.log(answers.productId + " " + answers.unitsToBuy);
+    connection.end();
   });
-
 }
 
 
