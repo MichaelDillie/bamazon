@@ -58,7 +58,23 @@ function buyProduct() {
         }
       }
       if(chosenId.stock_quantity - answers.unitsToBuy >= 0) {
-        console.log("Enough to buy");
+        var newAmountInStock;
+        newAmountInStock = chosenId.stock_quantity - answers.unitsToBuy;
+        connection.query(
+          "UPDATE products SET ? WHERE ?",
+          [
+            {
+              stock_quantity: newAmountInStock
+            },
+            {
+              id: chosenId.id
+            }
+          ],
+          function(err) {
+            if (err) throw err;
+            console.log("Purchase Successful");
+          }
+        );
       } else {
         console.log("Not enough to buy");
       }
