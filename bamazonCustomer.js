@@ -36,22 +36,31 @@ function start() {
 }
 
 function buyProduct() {
-  var buyProductQuestions = [
-    {
-      type: "input",
-      name: "productId",
-      message: "What is the ID of the product you would like to buy?"
-    },
-    {
-      type: "input",
-      name: "unitsToBuy",
-      message: "How many units would you like to buy?"
-    }
-  ];
-  inquirer.prompt(buyProductQuestions).then(function(answers) {
-    console.log(answers.productId + " " + answers.unitsToBuy);
-    connection.end();
-  });
+  connection.query("SELECT * FROM products", function(err, result) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "productId",
+          message: "What is the ID of the product you would like to buy?"
+        },
+        {
+          type: "input",
+          name: "unitsToBuy",
+          message: "How many units would you like to buy?"
+        }
+    ])
+    .then(function(answers) {
+      console.log(typeof answers.productId);
+      var chosenId;
+      for(var i = 0; i < result.length; i++) {
+        if(result[i].id === parseInt(answers.productId)) {
+          console.log("We have a match! " + result[i].id + " " + answers.productId);
+        }
+      }
+      connection.end();
+    });
+  })
 }
 
 
