@@ -51,12 +51,16 @@ function buyProduct() {
         }
     ])
     .then(function(answers) {
-      console.log(typeof answers.productId);
       var chosenId;
       for(var i = 0; i < result.length; i++) {
         if(result[i].id === parseInt(answers.productId)) {
-          console.log("We have a match! " + result[i].id + " " + answers.productId);
+          chosenId = result[i]
         }
+      }
+      if(chosenId.stock_quantity - answers.unitsToBuy >= 0) {
+        console.log("Enough to buy");
+      } else {
+        console.log("Not enough to buy");
       }
       connection.end();
     });
