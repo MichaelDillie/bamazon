@@ -72,7 +72,8 @@ function buyProduct() {
           ],
           function(err) {
             if (err) throw err;
-            console.log("Purchase Successful");
+            console.log("Purchase Successful!");
+            console.log("Total cost of purchase $" + chosenId.price * answers.unitsToBuy);
           }
         );
       } else {
