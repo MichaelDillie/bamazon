@@ -38,7 +38,7 @@ function start() {
           lowInventory();
           break;
         case "Add to Inventory":
-          // addInventory();
+          addInventory();
           break;
         case "Add New Product":
           // newProduct();
@@ -74,4 +74,46 @@ function lowInventory() {
     }
     connection.end();
   });
+}
+
+function addInventory() {
+  connection.query("SELECT * FROM products", function(err, res) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "addToId",
+          message: "ID of Product"
+        },
+        {
+          type: "input",
+          name: "numberToAdd",
+          message: "Units to Add"
+        }
+      ]).then(function(answers) {
+        var newUnitAmount = parseInt(answers.numberToAdd);
+        for(i = 0; i < res.length; i++) {
+          if(res[i].id === parseInt(answers.addToId)) {
+            newUnitAmount += res[i].stock_quantity;
+          }
+        }
+
+        var query = connection.query(
+          "UPDATE products SET ? WHERE ?",
+          [
+            {
+              stock_quantity: newUnitAmount
+            },
+            {
+              id: answers.addToId
+            }
+          ],
+          function(err) {
+            if (err) throw err;
+            console.log("Units Have Been Added");
+          }
+        );
+        connection.end();
+      });
+  })
 }
