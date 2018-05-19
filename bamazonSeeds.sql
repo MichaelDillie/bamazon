@@ -4,6 +4,7 @@ CREATE DATABASE bamazon_db;
 
 USE bamazon_db;
 
+-- PRODUCTS TABLE --
 CREATE TABLE products(
   product_id INT NOT NULL AUTO_INCREMENT,
   product_name VARCHAR(50),
@@ -14,6 +15,7 @@ CREATE TABLE products(
   PRIMARY KEY (product_id)
 );
 
+-- DEPARTMENTS TABLE --
 CREATE TABLE departments(
   department_id INT NOT NULL AUTO_INCREMENT,
   department_name VARCHAR(30),
