@@ -26,7 +26,7 @@ function start() {
         "Add to Inventory",
         "Add New Product"
       ],
-      message: "Select an option"
+      message: "Select an option."
     }
   ])
     .then(function (answers) {
@@ -109,7 +109,7 @@ function addInventory() {
           ],
           function(err) {
             if (err) throw err;
-            console.log("Units Have Been Added");
+            console.log("Units Have Been Added.");
           }
         );
         connection.end();

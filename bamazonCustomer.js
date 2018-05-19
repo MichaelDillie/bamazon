@@ -19,10 +19,10 @@ function start() {
     {
       type: "list",
       name: "test",
-      message: "What do you want to do",
+      message: "Welcome to Bamazon!\n Select an Option.",
       choices:[
         "List Products",
-        "Buy Product"
+        "Buy A Product"
       ]
     }
   ];
@@ -72,8 +72,7 @@ function buyProduct() {
           ],
           function(err) {
             if (err) throw err;
-            console.log("Purchase Successful!");
-            console.log("Total cost of purchase $" + chosenId.price * answers.unitsToBuy);
+            console.log("Purchase Successful!\n Total cost of purchase $" + chosenId.price * answers.unitsToBuy + "\n" + "Thank You for Choosing Bamazon!");
           }
         );
         var productSale;
@@ -99,15 +98,18 @@ function buyProduct() {
           }
         );
       } else {
-        console.log("Not enough to buy");
+        var unitsLeft;
+        for(var i = 0; i < result.length; i++) {
+          if(result[i].product_id === parseInt(answers.productId)) {
+            unitsLeft = result[i].stock_quantity;
+          }
+        }
+        console.log("Sorry! There are only " + unitsLeft + " units left in stock.");
       }
       connection.end();
     });
   })
 }
-
-
-
 
 function readProducts() {
   connection.query("SELECT * FROM products", function(err, res) {
