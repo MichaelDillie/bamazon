@@ -35,7 +35,7 @@ function start() {
           productsForSale();
           break;
         case "View Low Inventory":
-          // lowInventory();
+          lowInventory();
           break;
         case "Add to Inventory":
           // addInventory();
@@ -54,7 +54,7 @@ function productsForSale() {
       console.log("---------------------------------");
       console.log("Product ID - " + res[i].id);
       console.log("Product Name - " + res[i].product_name);
-      console.log("Product Price - " + res[i].price);
+      console.log("Product Price - $" + res[i].price);
       console.log("Units in Stock - " + res[i].stock_quantity);
     }
     connection.end();
@@ -64,7 +64,14 @@ function productsForSale() {
 function lowInventory() {
   connection.query("SELECT * FROM products", function(err, res) {
     for(var i = 0; i < res.length; i++) {
-      console.log(res[i].stock_quantity)
+      if(res[i].stock_quantity < 5) {
+        console.log("----------LOW INVENTORY----------");
+        console.log("Product ID - " + res[i].id);
+        console.log("Product Name - " + res[i].product_name);
+        console.log("Product Price - $" + res[i].price);
+        console.log("Units in Stock - " + res[i].stock_quantity);
+      }
     }
+    connection.end();
   });
 }

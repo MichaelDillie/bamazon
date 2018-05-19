@@ -42,3 +42,6 @@ VALUES ("tablet", "electronics", 350, 1000);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
 VALUES ("lawn darts set", "sports", 35, 200);
+
+INSERT INTO products(product_name, department_name, price, stock_quantity)
+VALUES ("shoes", "cloths", 200, 4);
