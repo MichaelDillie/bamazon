@@ -145,6 +145,19 @@ function newProduct() {
       console.log(answers.departmentName);
       console.log(answers.productPrice);
       console.log(answers.stockQuantity);
+      var query = connection.query(
+        "INSERT INTO products SET ?",
+        {
+          product_name: answers.productName,
+          department_name: answers.departmentName,
+          price: answers.productPrice,
+          stock_quantity: answers.stockQuantity
+        },
+        function(err) {
+          if (err) throw err;
+          console.log("Product Added.");
+        }
+      );
       connection.end();
   })
 }
