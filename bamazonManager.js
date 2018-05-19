@@ -41,7 +41,7 @@ function start() {
           addInventory();
           break;
         case "Add New Product":
-          // newProduct();
+          newProduct();
           break;
       }
     });
@@ -114,5 +114,37 @@ function addInventory() {
         );
         connection.end();
       });
+  })
+}
+
+function newProduct() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "productName",
+        message: "Product Name"
+      },
+      {
+        type: "input",
+        name: "departmentName",
+        message: "Department Name"
+      },
+      {
+        type: "input",
+        name: "productPrice",
+        message: "Product Price"
+      },
+      {
+        type: "input",
+        name: "stockQuantity",
+        message: "Units in Stock"
+      }
+    ]).then(function(answers) {
+      console.log(answers.productName);
+      console.log(answers.departmentName);
+      console.log(answers.productPrice);
+      console.log(answers.stockQuantity);
+      connection.end();
   })
 }
