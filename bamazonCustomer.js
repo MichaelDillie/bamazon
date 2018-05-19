@@ -53,7 +53,7 @@ function buyProduct() {
     .then(function(answers) {
       var chosenId;
       for(var i = 0; i < result.length; i++) {
-        if(result[i].id === parseInt(answers.productId)) {
+        if(result[i].product_id === parseInt(answers.productId)) {
           chosenId = result[i]
         }
       }
@@ -67,7 +67,7 @@ function buyProduct() {
               stock_quantity: newAmountInStock
             },
             {
-              id: chosenId.id
+              product_id: chosenId.product_id
             }
           ],
           function(err) {
@@ -92,7 +92,7 @@ function readProducts() {
     if(err) throw err;
     for(var i = 0; i < res.length; i++) {
       console.log("---------------------------------");
-      console.log("Product ID - " + res[i].id);
+      console.log("Product ID - " + res[i].product_id);
       console.log("Product Name - " + res[i].product_name);
       console.log("Product Price - $" + res[i].price);
       console.log("Units in Stock - " + res[i].stock_quantity);
