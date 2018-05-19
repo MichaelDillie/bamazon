@@ -27,7 +27,22 @@ function start() {
         message: "Select an Option."
       }
     ]).then(function(answers) {
-      console.log(answers.choice);
+      switch(answers.choice) {
+        case "View Product Sales by Department":
+          viewSalesByDepartment();
+          break;
+        case "Create New Department":
+          createNewDepartment();
+          break;
+      }
       connection.end();
   });
+}
+
+function viewSalesByDepartment() {
+  console.log("this is View Product Sales by Department function");
+}
+
+function createNewDepartment() {
+  console.log("this is Create New Department function");
 }
