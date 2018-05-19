@@ -40,7 +40,15 @@ function start() {
 }
 
 function viewSalesByDepartment() {
-  console.log("this is View Product Sales by Department function");
+  connection.query("SELECT * FROM departments", function(err, res) {
+    if (err) throw err;
+    for(var i = 0; i < res.length; i++) {
+      console.log("---------------------------------");
+      console.log("Department ID - " + res[i].department_id);
+      console.log("Department Name - " + res[i].department_name);
+      console.log("Overhead Cost - $" + res[i].over_head_cost);
+    }
+  });
 }
 
 function createNewDepartment() {
