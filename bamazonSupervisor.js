@@ -15,6 +15,19 @@ connection.connect(function(err) {
 })
 
 function start() {
-  console.log("Hello World!");
-  connection.end();
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "choice",
+        choices: [
+          "View Product Sales by Department",
+          "Create New Department"
+        ],
+        message: "Select an Option."
+      }
+    ]).then(function(answers) {
+      console.log(answers.choice);
+      connection.end();
+  });
 }
