@@ -90,7 +90,13 @@ function buyProduct() {
 function readProducts() {
   connection.query("SELECT * FROM products", function(err, res) {
     if(err) throw err;
-    console.log(res);
+    for(var i = 0; i < res.length; i++) {
+      console.log("---------------------------------");
+      console.log("Product ID - " + res[i].id);
+      console.log("Product Name - " + res[i].product_name);
+      console.log("Product Price - $" + res[i].price);
+      console.log("Units in Stock - " + res[i].stock_quantity);
+    }
     connection.end();
   });
 }
