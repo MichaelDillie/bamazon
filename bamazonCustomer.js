@@ -76,6 +76,28 @@ function buyProduct() {
             console.log("Total cost of purchase $" + chosenId.price * answers.unitsToBuy);
           }
         );
+        var productSale;
+        productSale = chosenId.price * answers.unitsToBuy;
+        var newProductSale = productSale;
+        for(var i = 0; i < result.length; i++) {
+          if(result[i].product_id === parseInt(answers.productId)) {
+            newProductSale += result[i].prodcut_sales;
+          }
+        }
+        connection.query(
+          "UPDATE products SET ? WHERE ?",
+          [
+            {
+              prodcut_sales: newProductSale
+            },
+            {
+              product_id: chosenId.product_id
+            }
+          ],
+          function(err) {
+            if (err) throw err;
+          }
+        );
       } else {
         console.log("Not enough to buy");
       }
