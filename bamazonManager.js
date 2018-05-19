@@ -97,7 +97,6 @@ function addInventory() {
             newUnitAmount += res[i].stock_quantity;
           }
         }
-
         var query = connection.query(
           "UPDATE products SET ? WHERE ?",
           [
