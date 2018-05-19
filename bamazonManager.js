@@ -52,7 +52,7 @@ function productsForSale() {
     if(err) throw err;
     for(var i = 0; i < res.length; i++) {
       console.log("---------------------------------");
-      console.log("Product ID - " + res[i].id);
+      console.log("Product ID - " + res[i].product_id);
       console.log("Product Name - " + res[i].product_name);
       console.log("Product Price - $" + res[i].price);
       console.log("Units in Stock - " + res[i].stock_quantity);
@@ -66,7 +66,7 @@ function lowInventory() {
     for(var i = 0; i < res.length; i++) {
       if(res[i].stock_quantity < 5) {
         console.log("----------LOW INVENTORY----------");
-        console.log("Product ID - " + res[i].id);
+        console.log("Product ID - " + res[i].product_id);
         console.log("Product Name - " + res[i].product_name);
         console.log("Product Price - $" + res[i].price);
         console.log("Units in Stock - " + res[i].stock_quantity);
@@ -93,7 +93,7 @@ function addInventory() {
       ]).then(function(answers) {
         var newUnitAmount = parseInt(answers.numberToAdd);
         for(i = 0; i < res.length; i++) {
-          if(res[i].id === parseInt(answers.addToId)) {
+          if(res[i].product_id === parseInt(answers.addToId)) {
             newUnitAmount += res[i].stock_quantity;
           }
         }
@@ -104,7 +104,7 @@ function addInventory() {
               stock_quantity: newUnitAmount
             },
             {
-              id: answers.addToId
+              product_id: answers.addToId
             }
           ],
           function(err) {
