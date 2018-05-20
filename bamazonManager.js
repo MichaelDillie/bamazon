@@ -24,7 +24,8 @@ function start() {
         "View Products for Sale",
         "View Low Inventory",
         "Add to Inventory",
-        "Add New Product"
+        "Add New Product",
+        "testing"
       ],
       message: "Select an option."
     }
@@ -42,6 +43,9 @@ function start() {
           break;
         case "Add New Product":
           newProduct();
+          break;
+        case "testing":
+          testing();
           break;
       }
     });
@@ -160,4 +164,14 @@ function newProduct() {
       );
       connection.end();
   })
+}
+
+function testing() {
+  connection.query("SELECT SUM(product_sales), department_name FROM products GROUP BY department_name", function(err, res) {
+    if (err) throw err;
+      for(var i = 0; i < res.length; i++) {
+        console.log(res[i].product_sales);
+      }
+    connection.end();
+  });
 }

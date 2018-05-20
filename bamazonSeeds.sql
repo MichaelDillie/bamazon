@@ -11,7 +11,7 @@ CREATE TABLE products(
   department_name VARCHAR(30),
   price INT NULL,
   stock_quantity INT NULL,
-  prodcut_sales INT DEFAULT 0,
+  product_sales INT DEFAULT 0,
   PRIMARY KEY (product_id)
 );
 
@@ -20,28 +20,28 @@ CREATE TABLE departments(
   department_id INT NOT NULL AUTO_INCREMENT,
   department_name VARCHAR(30),
   over_head_cost INT NULL,
-  prodcut_sales INT DEFAULT 0,
+  product_sales INT DEFAULT 0,
   PRIMARY KEY (department_id)
 );
 
 -- PRODUCTS --
-INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("goldfish", "animals", 2, 20);
+INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales)
+VALUES ("goldfish", "animals", 2, 20, 1000);
+
+INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales)
+VALUES ("soccer ball", "sports", 15, 500, 5000);
+
+INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales)
+VALUES ("football", "sports", 10, 900, 3500);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("soccer ball", "sports", 15, 500);
+VALUES ("ping pong balls", "sports", 8, 600);
 
-INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("football", "sports", 10, 900);
+INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales)
+VALUES ("laptop", "electronics", 1300, 5000, 130000);
 
-INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("ping pong balls", "spots", 8, 600);
-
-INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("laptop", "electronics", 1300, 5000);
-
-INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("headphones", "electronics", 30, 1500);
+INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales)
+VALUES ("headphones", "electronics", 30, 1500, 60000);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
 VALUES ("google pixel", "electronics", 500, 3000);
