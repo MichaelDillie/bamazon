@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
+var Table = require('cli-table');
+var colors = require('colors');
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -12,7 +14,7 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
   if (err) throw err;
   start();
-})
+});
 
 function start() {
   inquirer
@@ -39,15 +41,25 @@ function start() {
   });
 }
 
+colors.setTheme({
+  headder: ["cyan", "bold"],
+  logged: ["green", "bold"]
+});
+
 function viewSalesByDepartment() {
   connection.query("SELECT * FROM departments", function(err, res) {
     if (err) throw err;
+    var table = new Table({
+      head: ["Department ID".headder, "Department Name".headder, "Over Head Cost".headder],
+      colWidths: [15, 25, 15, 20]
+    });
     for(var i = 0; i < res.length; i++) {
-      console.log("---------------------------------");
-      console.log("Department ID - " + res[i].department_id);
-      console.log("Department Name - " + res[i].department_name);
-      console.log("Overhead Cost - $" + res[i].over_head_cost);
+      table.push(
+        [res[i].department_id, res[i].department_name, res[i].over_head_cost]
+      );
     }
+    console.log(table.toString());
+    connection.end();
   });
 }
 

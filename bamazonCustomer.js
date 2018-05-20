@@ -39,8 +39,7 @@ function start() {
 
 colors.setTheme({
   headder: ["cyan", "bold"],
-  logged: ["green", "bold"],
-  error: ["red", "bold"]
+  logged: ["green", "bold"]
 });
 
 function buyProduct() {
