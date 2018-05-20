@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
+var Table = require('cli-table');
+var colors = require('colors');
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -12,7 +14,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
   if (err) throw err;
   start();
-})
+});
 
 function start() {
   inquirer
@@ -24,8 +26,7 @@ function start() {
         "View Products for Sale",
         "View Low Inventory",
         "Add to Inventory",
-        "Add New Product",
-        "testing"
+        "Add New Product"
       ],
       message: "Select an option."
     }
@@ -48,31 +49,43 @@ function start() {
     });
 }
 
+colors.setTheme({
+  headder: ["cyan", "bold"],
+  logged: ["green", "bold"]
+});
+
 function productsForSale() {
   connection.query("SELECT * FROM products", function(err, res) {
     if(err) throw err;
+    var table = new Table({
+      head: ["Product ID".headder, "Product Name".headder, "Product Price".headder, "Units in Stock".headder],
+      colWidths: [12, 25, 15, 20]
+    });
     for(var i = 0; i < res.length; i++) {
-      console.log("---------------------------------");
-      console.log("Product ID - " + res[i].product_id);
-      console.log("Product Name - " + res[i].product_name);
-      console.log("Product Price - $" + res[i].price);
-      console.log("Units in Stock - " + res[i].stock_quantity);
+      table.push(
+        [res[i].product_id, res[i].product_name, res[i].price, res[i].stock_quantity]
+      );
     }
+    console.log(table.toString());
     connection.end();
   });
 }
 
 function lowInventory() {
   connection.query("SELECT * FROM products", function(err, res) {
+    if (err) throw err;
+    var table = new Table({
+      head: ["Product ID".headder, "Product Name".headder, "Product Price".headder, "Units in Stock".headder],
+      colWidths: [12, 25, 15, 20]
+    });
     for(var i = 0; i < res.length; i++) {
       if(res[i].stock_quantity < 5) {
-        console.log("----------LOW INVENTORY----------");
-        console.log("Product ID - " + res[i].product_id);
-        console.log("Product Name - " + res[i].product_name);
-        console.log("Product Price - $" + res[i].price);
-        console.log("Units in Stock - " + res[i].stock_quantity);
+        table.push(
+          [res[i].product_id, res[i].product_name, res[i].price, res[i].stock_quantity]
+        );
       }
     }
+    console.log(table.toString());
     connection.end();
   });
 }
@@ -110,7 +123,7 @@ function addInventory() {
           ],
           function(err) {
             if (err) throw err;
-            console.log("Units Have Been Added.");
+            console.log("Units Have Been Added.".logged);
           }
         );
         connection.end();
@@ -142,10 +155,6 @@ function newProduct() {
         message: "Units in Stock"
       }
     ]).then(function(answers) {
-      console.log(answers.productName);
-      console.log(answers.departmentName);
-      console.log(answers.productPrice);
-      console.log(answers.stockQuantity);
       var query = connection.query(
         "INSERT INTO products SET ?",
         {
@@ -156,7 +165,7 @@ function newProduct() {
         },
         function(err) {
           if (err) throw err;
-          console.log("Product Added.");
+          console.log("Product Added.".logged);
         }
       );
       connection.end();
