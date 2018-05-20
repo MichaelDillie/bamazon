@@ -20,7 +20,7 @@ function start() {
   var greeting = [
     {
       type: "list",
-      name: "test",
+      name: "choice",
       message: "Welcome to Bamazon!\n Select an Option.",
       choices:[
         "List Products",
@@ -29,10 +29,13 @@ function start() {
     }
   ];
   inquirer.prompt(greeting).then(function(answers) {
-    if(answers.test === "List Products") {
-      readProducts();
-    } else {
-      buyProduct();
+    switch (answers.choice) {
+      case "List Products":
+        readProducts();
+        break;
+      case "Buy A Product":
+        buyProduct();
+        break;
     }
   });
 }
