@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
+var Table = require('cli-table');
+var colors = require('colors');
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -12,7 +14,7 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
   if (err) throw err;
   start();
-})
+});
 
 function start() {
   var greeting = [
@@ -34,6 +36,12 @@ function start() {
     }
   });
 }
+
+colors.setTheme({
+  headder: ["cyan", "bold"],
+  logged: ["green", "bold"],
+  error: ["red", "bold"]
+});
 
 function buyProduct() {
   connection.query("SELECT * FROM products", function(err, result) {
@@ -80,14 +88,14 @@ function buyProduct() {
         var newProductSale = productSale;
         for(var i = 0; i < result.length; i++) {
           if(result[i].product_id === parseInt(answers.productId)) {
-            newProductSale += result[i].prodcut_sales;
+            newProductSale += result[i].product_sales;
           }
         }
         connection.query(
           "UPDATE products SET ? WHERE ?",
           [
             {
-              prodcut_sales: newProductSale
+              product_sales: newProductSale
             },
             {
               product_id: chosenId.product_id
@@ -113,14 +121,17 @@ function buyProduct() {
 
 function readProducts() {
   connection.query("SELECT * FROM products", function(err, res) {
+    var table = new Table({
+      head: ["Product ID".headder, "Product Name".headder, "Product Price".headder, "Units in Stock".headder],
+      colWidths: [12, 25, 15, 20]
+    });
     if(err) throw err;
     for(var i = 0; i < res.length; i++) {
-      console.log("---------------------------------");
-      console.log("Product ID - " + res[i].product_id);
-      console.log("Product Name - " + res[i].product_name);
-      console.log("Product Price - $" + res[i].price);
-      console.log("Units in Stock - " + res[i].stock_quantity);
+      table.push(
+        [res[i].product_id, res[i].product_name, res[i].price, res[i].stock_quantity]
+      );
     }
+    console.log(table.toString());
     connection.end();
   });
 }
