@@ -44,9 +44,6 @@ function start() {
         case "Add New Product":
           newProduct();
           break;
-        case "testing":
-          testing();
-          break;
       }
     });
 }
@@ -166,12 +163,12 @@ function newProduct() {
   })
 }
 
-function testing() {
-  connection.query("SELECT SUM(product_sales), department_name FROM products GROUP BY department_name", function(err, res) {
-    if (err) throw err;
-      for(var i = 0; i < res.length; i++) {
-        console.log(res[i].product_sales);
-      }
-    connection.end();
-  });
-}
+// function testing() {
+//   connection.query("SELECT SUM(product_sales), department_name FROM products GROUP BY department_name", function(err, res) {
+//     if (err) throw err;
+//       for(var i = 0; i < res.length; i++) {
+//         console.log(res[i]);
+//       }
+//     connection.end();
+//   });
+// }
