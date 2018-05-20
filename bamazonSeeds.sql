@@ -26,47 +26,47 @@ CREATE TABLE departments(
 
 -- PRODUCTS --
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("goldfish", "animals", 2, 20);
+VALUES ("Goldfish", "Animals", 2, 20);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("soccer ball", "sports", 15, 500);
+VALUES ("Soccer Ball", "Sports", 15, 500);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("football", "sports", 10, 900);
+VALUES ("Football", "Sports", 10, 900);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("ping pong balls", "sports", 8, 600);
+VALUES ("Ping Pong Balls", "Sports", 8, 600);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("laptop", "electronics", 1300, 5000);
+VALUES ("Laptop", "Electronics", 1300, 5000);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("headphones", "electronics", 30, 1500);
+VALUES ("Headphones", "Electronics", 30, 1500);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("google pixel", "electronics", 500, 3000);
+VALUES ("Phone", "Electronics", 500, 3000);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("golf ball", "sports", 20, 10000);
+VALUES ("Golf Ball", "Sports", 20, 10000);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("tablet", "electronics", 350, 1000);
+VALUES ("Tablet", "Electronics", 350, 1000);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("lawn darts set", "sports", 35, 200);
+VALUES ("Lawn Darts Set", "Sports", 35, 200);
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES ("shoes", "clothing", 200, 4);
+VALUES ("Shoes", "Clothing", 200, 4);
 
 -- DEPARTMENTS --
 INSERT INTO departments(department_name, over_head_cost)
-VALUES ("electronics", 10000);
+VALUES ("Electronics", 10000);
 
 INSERT INTO departments(department_name, over_head_cost)
-VALUES ("clothing", 60000);
+VALUES ("Clothing", 60000);
 
 INSERT INTO departments(department_name, over_head_cost)
-VALUES ("sports", 9000);
+VALUES ("Sports", 9000);
 
 INSERT INTO departments(department_name, over_head_cost)
-VALUES ("animals", 1000);
+VALUES ("Animals", 1000);
