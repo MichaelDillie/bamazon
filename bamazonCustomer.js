@@ -160,7 +160,7 @@ function readProducts() {
     for(var i = 0; i < res.length; i++) {
       // Pushing all the info from the DB into the new table
       table.push(
-        [res[i].product_id, res[i].product_name, res[i].price, res[i].stock_quantity]
+        [res[i].product_id, res[i].product_name, "$" + res[i].price, res[i].stock_quantity]
       );
     }
     // Displaying the table

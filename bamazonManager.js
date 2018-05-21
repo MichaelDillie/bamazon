@@ -73,7 +73,7 @@ function productsForSale() {
     for(var i = 0; i < res.length; i++) {
       // Pushing all info from the DB into the new table
       table.push(
-        [res[i].product_id, res[i].product_name, res[i].price, res[i].stock_quantity]
+        [res[i].product_id, res[i].product_name, "$" + res[i].price, res[i].stock_quantity]
       );
     }
     // Displaying the table to the user
@@ -96,7 +96,7 @@ function lowInventory() {
       if(res[i].stock_quantity < 5) {
         // Pushing all info from the DB into the new table
         table.push(
-          [res[i].product_id, res[i].product_name, res[i].price, res[i].stock_quantity]
+          [res[i].product_id, res[i].product_name, "$" + res[i].price, res[i].stock_quantity]
         );
       }
     }
@@ -201,15 +201,3 @@ function newProduct() {
       connection.end();
   })
 }
-
-// ***** TESTING *****
-
-// function testing() {
-//   connection.query("SELECT SUM(product_sales), department_name FROM products GROUP BY department_name", function(err, res) {
-//     if (err) throw err;
-//       for(var i = 0; i < res.length; i++) {
-//         console.log(res[i]);
-//       }
-//     connection.end();
-//   });
-// }

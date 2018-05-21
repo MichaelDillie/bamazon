@@ -43,8 +43,6 @@ function start() {
           createNewDepartment();
           break;
       }
-      // Ending connection
-      connection.end();
   });
 }
 
@@ -62,7 +60,7 @@ function viewSalesByDepartment() {
     // Creating a new table
     var table = new Table({
       head: ["Department ID".headder, "Department Name".headder, "Over Head Cost".headder],
-      colWidths: [15, 25, 15, 20]
+      colWidths: [15, 20, 20]
     });
     for(var i = 0; i < res.length; i++) {
       // Pushing all the data from the departments table in the DB to the new table
