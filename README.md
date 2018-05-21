@@ -18,3 +18,9 @@ When a manager uses Bamazon they will have the options to.
 
 #### Listing products for sale AND showing low inventory
 ![Listing products for sale AND showing low inventory](https://michaeldillie.github.io/bamazon/managerGifOne.gif)
+
+#### Adding to inventory
+![Adding to inventory](https://michaeldillie.github.io/bamazon/managerGifTwo.gif)
+
+#### Adding a new product
+![Adding a new product](https://michaeldillie.github.io/bamazon/managerGifThree.gif)
