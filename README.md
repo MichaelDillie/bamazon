@@ -7,7 +7,7 @@ When a customer uses Bamazon they will have 2 options.
 * Buy Products
 
 ### Listing products and Buying a product
-![List and Buy Products](https://michaeldillie.github.io/bamazon/customerGif.gif)
+![List and Buy Products](https://michaeldillie.github.io/bamazon/customerGifOne.gif)
 
 # Manager
 When a manager uses Bamazon they will have the options to.
