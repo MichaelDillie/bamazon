@@ -6,4 +6,4 @@ When a customer uses Bamazon they will have 2 options
 * List Products
 * Buy Products
 
-![List and Buy Products](https://michaeldillie.github.io/bamazon/gifs/customerGif.gif)
+![List and Buy Products](https://michaeldillie.github.io/bamazon/customerGif.gif)
