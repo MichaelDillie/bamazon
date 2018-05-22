@@ -7,7 +7,7 @@ When a customer uses Bamazon they will have 2 options.
 * Buy Products
 
 ##### Listing products and Buying a product
-![List and Buy Products](https://michaeldillie.github.io/bamazon/customerGif.gif)
+![List and Buy Products](images/customerGif.gif)
 
 # Manager
 When a manager uses Bamazon they will have the options to.
@@ -17,10 +17,10 @@ When a manager uses Bamazon they will have the options to.
 * Add a New Product
 
 #### Listing products for sale AND showing low inventory
-![Listing products for sale AND showing low inventory](https://michaeldillie.github.io/bamazon/managerGifOne.gif)
+![Listing products for sale AND showing low inventory](images/managerGifOne.gif)
 
 #### Adding to inventory
-![Adding to inventory](https://michaeldillie.github.io/bamazon/managerGifTwo.gif)
+![Adding to inventory](images/managerGifTwo.gif)
 
 #### Adding a new product
-![Adding a new product](https://michaeldillie.github.io/bamazon/managerGifThree.gif)
+![Adding a new product](images/managerGifThree.gif)
