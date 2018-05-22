@@ -77,5 +77,32 @@ function viewSalesByDepartment() {
 
 // ***** STILL UNDER TESTING *****
 function createNewDepartment() {
-  console.log("this is Create New Department function");
+  inquirer
+    .prompt([
+     {
+       type: "input",
+       name: "departmentName",
+       message: "Department Name"
+     },
+     {
+       type: "input",
+       name: "overHeadCost",
+       message: "Over Head Cost"
+     }
+    ]).then(function(answers) {
+      connection.query("SELECT department_name FROM departments", function(err, res) {
+        if (err) throw err;
+        var departmentExists = false;
+        for(var i = 0; i < res.length; i++) {
+          if(res[i].department_name.toUpperCase() === answers.departmentName.toUpperCase()) {
+            departmentExists = true;
+          }
+        }
+        if (!departmentExists) {
+          
+        }
+        console.log(departmentExists);
+        connection.end();
+      });
+  });
 }
