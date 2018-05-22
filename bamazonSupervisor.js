@@ -49,7 +49,8 @@ function start() {
 // Setting themes for colors that will be used in the table
 colors.setTheme({
   headder: ["cyan", "bold"],
-  logged: ["green", "bold"]
+  logged: ["green", "bold"],
+  error: ["red", "bold"]
 });
 
 // The viewSalesByDepartment function will diplay everthing in the DB in the
@@ -99,9 +100,11 @@ function createNewDepartment() {
           }
         }
         if (!departmentExists) {
+          // UPDATE THE DB
           
+        } else {
+          console.log("Department Already Exists".error);
         }
-        console.log(departmentExists);
         connection.end();
       });
   });
