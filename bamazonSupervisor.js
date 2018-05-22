@@ -101,7 +101,15 @@ function createNewDepartment() {
         }
         if (!departmentExists) {
           // UPDATE THE DB
-          
+          connection.query("INSERT INTO departments SET ?",
+          {
+            department_name: answers.departmentName,
+            over_head_cost: answers.overHeadCost
+          },
+          function(err) {
+            if (err) throw err;
+            console.log("Department Added".logged);
+          });
         } else {
           console.log("Department Already Exists".error);
         }
