@@ -158,6 +158,14 @@ function addInventory() {
 
 // The newProduct function will add a new product to the products table in the DB
 function newProduct() {
+  // An array to hold the departments that exist already
+  departmentArrays = [];
+  // Looping through departments
+  connection.query("SELECT DISTINCT department_name FROM departments", function(err, res) {
+    for(var i = 0; i < res.length; i++) {
+      departmentArrays.push(res[i].department_name);
+    }
+  });
   // Asks the user for info to create new product
   inquirer
     .prompt([
@@ -167,8 +175,9 @@ function newProduct() {
         message: "Product Name"
       },
       {
-        type: "input",
+        type: "list",
         name: "departmentName",
+        choices: departmentArrays,
         message: "Department Name"
       },
       {

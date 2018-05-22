@@ -55,17 +55,17 @@ colors.setTheme({
 // The viewSalesByDepartment function will diplay everthing in the DB in the
 // departments table to the user
 function viewSalesByDepartment() {
-  connection.query("SELECT * FROM departments", function(err, res) {
+  connection.query("SELECT department_id, departments.department_name, over_head_cost, SUM(product_sales) AS product_sales, (SUM(product_sales) - over_head_cost)  AS total_profit FROM departments RIGHT JOIN products ON departments.department_name = products.department_name GROUP BY department_id", function(err, res) {
     if (err) throw err;
     // Creating a new table
     var table = new Table({
-      head: ["Department ID".headder, "Department Name".headder, "Over Head Cost".headder],
-      colWidths: [15, 20, 20]
+      head: ["Department ID".headder, "Department Name".headder, "Over Head Cost".headder, "Product Sales".headder, "Total Profit".headder],
+      colWidths: [15, 20, 20, 15, 15]
     });
     for(var i = 0; i < res.length; i++) {
       // Pushing all the data from the departments table in the DB to the new table
       table.push(
-        [res[i].department_id, res[i].department_name, res[i].over_head_cost]
+        [res[i].department_id, res[i].department_name, res[i].over_head_cost, res[i].product_sales, res[i].total_profit]
       );
     }
     // Displaying to the user in the CLI
